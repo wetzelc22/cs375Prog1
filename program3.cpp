@@ -20,7 +20,7 @@ int topDown(std::string s1, std::string s2, int x, int y , std::vector<std::vect
 		mat[x-1][y-1] = 1 + topDown(s1, s2, x-1, y-1, mat);
 		return mat[x-1][y-1];
 	}else{
-		dp[x-1][y-1] = std::max(topDown(s1, s2, x, y-1, mat), topDown(s1, s2, x-1, y, mat));
+		mat[x-1][y-1] = std::max(topDown(s1, s2, x, y-1, mat), topDown(s1, s2, x-1, y, mat));
 		return mat[x-1][y-1];
 	}
 
@@ -48,14 +48,7 @@ int main(int argc, char **argv){
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time = end-start;
 	std::ofstream output(argv[3]);
-	if(n < 10 || m < 10){
-		for(int i = 0; i < n+1; i++){
-			for(int j = 0; j < m+1; j++){
-				output << mat[i][j] << " " ;
-			}
-			output << "\n";
-		}
-	}
+	
 	output << len << "\n";
 	output << time.count() << " seconds\n";
 	output.close();
