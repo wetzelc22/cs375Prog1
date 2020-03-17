@@ -15,7 +15,7 @@ int longestCS(std::string s1, std::string s2){
 	if(s1.back() == s2.back()){
 		return 1 + longestCS(s1.substr(0,s1.size()-1), s2.substr(0,s2.size()-1));
 	}else{
-		return max(longestCS(s1.substr(0,s1.size()), s2.substr(0,s2.size()-1)), longestCSs1.substr(0,s1.size()-1), s2.substr(0,s2.size()))
+		return std::max(longestCS(s1.substr(0,s1.size()), s2.substr(0,s2.size()-1)), longestCS(s1.substr(0,s1.size()-1), s2.substr(0,s2.size())));
 	}
 }
 
