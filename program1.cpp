@@ -4,11 +4,13 @@
 #include <fstream>
 #include <string>
 #include <chrono>
-
+#include <cassert>
 
 int topDown(std::vector<std::vector<int>> & mat, std::string s1, std::string s2){
+	int n = s1.size();
+	int m = s2.size();
 	for(int i = 0; i <= n; i++){
-		for(int j = 0 j <= m; j++){
+		for(int j = 0; j <= m; j++){
 			if(i == 0 || j == 0){
 				mat[i][j] = 0;
 			}else{
@@ -28,7 +30,7 @@ int topDown(std::vector<std::vector<int>> & mat, std::string s1, std::string s2)
 }
 
 int main(int argc, char **argv){
-	std::chrono start = high_resolution_clock::now();
+	auto start = std::chrono::high_resolution_clock::now();
 	assert(argc == 4);
 	std::string x;
 	std::string y;
@@ -38,14 +40,14 @@ int main(int argc, char **argv){
 	reader2 >> y;
 	reader.close(); reader2.close();
 
-	int n = s1.size();
-	int m = s2.size();
-	vector<vector<int> > mat(n+1, vector<int>(m+1, 0));
-	int len = topDown(mat, s1, s2);
+	int n = x.size();
+	int m = y.size();
+	std::vector<std::vector<int> > mat(n+1, std::vector<int>(m+1, 0));
+	int len = topDown(mat, x, y);
 
 
-	std::chrono end = high_resolution_clock::now();
-	std::chrono time = duration_cast<seconds>(end-start);
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> time = end-start;
 	std::ofstream output(argv[3]);
 	if(n < 10 || m < 10){
 		for(int i = 0; i < n+1; i++){
