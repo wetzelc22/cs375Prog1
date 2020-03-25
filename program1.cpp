@@ -49,7 +49,7 @@ int main(int argc, char **argv){
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time = end-start;
 	std::ofstream output(argv[3]);
-	if(n < 10 || m < 10){
+	if(n < 10 &&  m < 10){
 		for(int i = 0; i < n+1; i++){
 			for(int j = 0; j < m+1; j++){
 				output << mat[i][j] << " " ;
